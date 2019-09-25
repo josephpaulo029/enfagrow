@@ -1,0 +1,70 @@
+
+<ion-content class="background ion-padding">
+
+<ion-card-header>
+
+ </ion-card-header>
+
+<!-- <ion-item>
+  <ion-textarea placeholder="Enter more information here..."></ion-textarea>
+</ion-item>
+ -->
+
+<div class="nameofreg">
+    <ion-list class="container">
+		<ion-item  align-items-center class="containertext align-items-center ">
+  			 <ion-input class="container"></ion-input>
+		</ion-item>  
+		<div class="ion-text-center" >
+			<div class="myfirsttext">
+				<ion-label >NAME</ion-label>
+			</div>
+			<div>
+				<ion-label color="primary">(LAST NAME, FIRST NAME, MIDDLE NAME)</ion-label>
+			</div>
+		</div>
+		<ion-item class="containertext align-items-center">
+  			 <ion-input ></ion-input>
+		</ion-item>  
+
+		<div class="ion-text-center" >
+			<div class="myfirsttext">
+				<ion-label >PRC ID</ion-label>
+			</div>
+			<div class="myfirsttext">
+				<ion-label >__________________________________________________</ion-label>
+			</div>
+			<div class="myfirsttext">
+				<ion-label ><br/></ion-label>
+			</div>
+			<div class="myfirsttext">
+				<ion-label >WAIVER RELEASE AND LIABILITY</ion-label>
+			</div>
+		</div>
+		<div  class="containertextarea align-items-center">
+  			 <ion-textarea disabled="true"><br/>Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. It helps to </ion-textarea >
+		</div>
+		<div class="ion-text-center">
+  			 <ion-button  shape="round"  fill="outline" size="small" color="Tertiary" float-center >I Agree</ion-button>
+
+		</div>
+		<div class="ion-text-center ion-padding >
+  			 <canvas #signatureCanvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
+  			 <ion-label color="primary" shape="round">Signature</ion-label>
+		</div>
+		<div class="ion-text-center">
+			<ion-button color="Tertiary" (click)="clearPad()">Clear</ion-button>
+		</div>
+    </ion-list>
+
+
+</div>
+
+
+  <div  class="buttonposition ion-text-center">
+		<ion-button shape="round"  fill="outline" color="Tertiary"   href="successreg" >SUBMIT</ion-button>
+  </div>
+
+</ion-content>
+
+

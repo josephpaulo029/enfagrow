@@ -1,0 +1,19 @@
+ion-content.background{
+	--background: url(../../assets/images/reg_background.png) no-repeat fixed center;
+  background-size: contain;
+}
+
+.scroll-content {
+    overflow-y: hidden;
+}
+
+.buttonposition {
+    position: fixed;
+    left: 20px;
+    bottom: 30px;
+    right: 20px;
+}
+
+ion-button{
+    color: #2d355e;
+}

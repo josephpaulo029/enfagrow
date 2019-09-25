@@ -1,0 +1,35 @@
+ion-content.background{
+	--background: url(../../assets/images/enfagrow_background.png) no-repeat fixed center;
+}
+
+
+.scroll-content {
+    overflow-y: hidden;
+}
+
+.buttonposition {
+    position: fixed;
+    left: 20px;
+    bottom: 30px;
+    right: 20px;
+}
+
+ion-button{
+    color: #2d355e;
+    border: solid 2px;
+    border-radius: 20px !important;
+}
+
+.myfirsttext{
+    color: #2d355e;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 70%;
+  }

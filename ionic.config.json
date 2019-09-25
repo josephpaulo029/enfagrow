@@ -1,0 +1,7 @@
+{
+  "name": "enfagrowApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

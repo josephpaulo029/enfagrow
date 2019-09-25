@@ -1,0 +1,201 @@
+ion-content.background{
+	--background: url(../../assets/images/reg_background.png) no-repeat fixed center;
+  background-size: contain;
+}
+
+.scroll-content {
+    overflow-y: hidden;
+}
+
+page-home {
+        .drawing-active {
+          background: #d6fffc;
+        }
+        .title {
+          text-align: center;
+          font-weight: bold;
+          padding: 10px;
+        }
+ }
+
+ ion-button{
+        color: #2d355e;
+        border: solid 2px;
+        border-radius: 20px !important;
+ }
+    
+
+canvas {
+        display: block;
+        border: 3px solid #2d355e;
+        border-radius: 20px !important;
+        margin-left:auto; 
+        margin-right: auto; 
+        border-radius: 20px !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        background-color: transparent;
+}
+.color-block {
+        height: 40px;
+}
+
+.containerforpad {
+        width: 450px !important;
+        margin-left:auto; 
+        margin-right: auto; 
+        border: 3px solid #2d355e;
+        border-radius: 20px !important;
+        // padding-left: 10px;
+        // padding-right: 10px;
+        // padding-bottom: 5px;
+        // padding-top: 5px;
+        text-align: center;
+        background-color: transparent;
+}
+
+ion-button{
+    color: #2d355e;
+}
+
+.button-bottom{
+width: 50%;
+}
+
+.buttonposition {
+    position: fixed;
+    left: 20px;
+    bottom: 30px;
+    right: 20px;
+}
+
+.nameofreg {
+    position: fixed;
+    left: 50px;
+    bottom: 60px;
+    right: 50px;
+}
+
+.rounded {
+        width: 100%;
+        height: 100px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 10px;
+        margin-bottom: 10px;  
+        
+}
+
+.container {
+        width: 600px; 
+        margin-left:auto; 
+        margin-right: auto; 
+        background-color:  rgba(0,0,0,0);
+}
+
+.containermobemail {
+        border: solid 3px #2d355e;
+        border-radius: 20px !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        text-align: center;
+        background-color: transparent;
+}
+
+.containagree {
+        width: 150px; 
+        margin-left:auto; 
+        margin-right: auto; 
+        border-radius: 20px !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        text-align: center;
+        background-color: transparent;
+}
+
+
+
+.containertext {
+        width: 350px; 
+        height: 40px; 
+        margin-left:auto; 
+        margin-right: auto; 
+        border: solid 3px #2d355e;
+        border-radius: 20px !important;
+		// padding-left: 10px;
+		// padding-right: 10px;
+		// padding-bottom: 5px;
+		// padding-top: 5px;
+		text-align: center;
+		background-color: transparent;
+}
+
+.containeremailphone {
+        width: 250px; 
+        height: 40px; 
+        margin-left:auto; 
+        margin-right: auto; 
+        border: solid 3px #2d355e;
+        border-radius: 20px !important;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-bottom: 5px;
+		// padding-top: 5px;
+		text-align: center;
+		background-color: transparent;
+}
+
+
+// .containertext {
+//         width: 100px; 
+//         margin-left:auto; 
+//         margin-right: auto; 
+//         border: solid 1px #855294;
+//         border-radius: 20px !important;
+// 		padding-left: 10px;
+// 		padding-right: 10px;
+// 		padding-bottom: 5px;
+// 		padding-top: 5px;
+// 		text-align: center;
+// 		background-color: transparent;
+// }
+
+.containertextarea {
+        width: 450px !important;
+        height: 160px; 
+        margin-left:auto; 
+        margin-right: auto; 
+        border: solid 3px #2d355e;
+        border-radius: 20px !important;
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		text-align: center;
+		background-color: transparent;
+}
+
+.masters{
+     background-color:  rgba(0,0,0,0);
+}
+.myfirsttext{
+        color: #2d355e;
+        font-weight: bold;
+        font-size: 15px;
+}
+.myline{
+        color: #2d355e;
+        font-weight: bold;
+        font-size: 30px;
+}
+.mysecondtext{
+        color: #2d355e;
+        font-weight: bold;
+        font-size: 10px;
+}
