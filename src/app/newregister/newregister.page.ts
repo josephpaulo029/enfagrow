@@ -13,4 +13,16 @@ export class NewregisterPage implements OnInit {
   ngOnInit() {
   }
 
+  startDrawing() {
+
+  }
+
+  moved() {
+
+  }
+
+  clearPad() {
+
+  }
+
 }

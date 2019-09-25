@@ -11,24 +11,21 @@ import { Observable } from 'rxjs';
 })
 export class ReglistPage implements OnInit {
 
-    // developers: Dev[] = [];
- 
-    products: Observable<any[]>;
- 
-    // developer = {};
-    product = {};
-  
-    
+  // visitors: Observable<any[]>;
+  visitors: any;
 
-  constructor(public storage: Storage,private db: DatabaseService) { }
+
+
+  constructor(public storage: Storage, private db: DatabaseService) { }
 
   ngOnInit() {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
-        // this.db.getDevs().subscribe(devs => {
-        //   this.developers = devs;
-        // })
-        this.products = this.db.getProducts();
+        this.db.getList().subscribe(data => {
+          this.visitors = data;
+          console.log(this.visitors)
+
+        })
       }
     });
   }

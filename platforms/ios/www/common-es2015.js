@@ -807,11 +807,10 @@ let DatabaseService = class DatabaseService {
         this.sqlite = sqlite;
         this.http = http;
         this.dbReady = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"](false);
-        // developers = new BehaviorSubject([]);
-        this.products = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"]([]);
+        this.visitors = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"]([]);
         this.plt.ready().then(() => {
             this.sqlite.create({
-                name: 'developers.db',
+                name: 'events.db',
                 location: 'default'
             })
                 .then((db) => {
@@ -825,8 +824,7 @@ let DatabaseService = class DatabaseService {
             .subscribe(sql => {
             this.sqlitePorter.importSqlToDb(this.database, sql)
                 .then(_ => {
-                // this.loadDevelopers();
-                this.loadProducts();
+                this.loadVisitors();
                 this.dbReady.next(true);
             })
                 .catch(e => console.error(e));
@@ -835,52 +833,35 @@ let DatabaseService = class DatabaseService {
     getDatabaseState() {
         return this.dbReady.asObservable();
     }
-    // getDevs(): Observable<Dev[]> {
-    //   return this.developers.asObservable();
-    // }
-    getProducts() {
-        return this.products.asObservable();
+    getList() {
+        return this.visitors.asObservable();
     }
-    // loadDevelopers() {
-    //   return this.database.executeSql('SELECT * FROM developer', []).then(data => {
-    //     let developers: Dev[] = [];
-    //     if (data.rows.length > 0) {
-    //       for (var i = 0; i < data.rows.length; i++) {
-    //         let skills = [];
-    //         if (data.rows.item(i).skills != '') {
-    //           skills = JSON.parse(data.rows.item(i).skills);
-    //         }
-    //         developers.push({ 
-    //           id: data.rows.item(i).id,
-    //           name: data.rows.item(i).name, 
-    //           skills: skills, 
-    //           img: data.rows.item(i).img
-    //          });
-    //       }
-    //     }
-    //     this.developers.next(developers);
-    //   });
-    // }
-    loadProducts() {
+    loadVisitors() {
         // let query = 'SELECT product.name, product.id, developer.name AS creator FROM product JOIN developer ON developer.id = product.creatorId';
-        let query = 'SELECT * FROM developer';
+        let query = 'SELECT * FROM visitor';
         return this.database.executeSql(query, []).then(data => {
             let products = [];
             if (data.rows.length > 0) {
                 for (var i = 0; i < data.rows.length; i++) {
                     products.push({
-                        names: data.rows.item(i).names,
                         id: data.rows.item(i).id,
+                        names: data.rows.item(i).names,
+                        prcid: data.rows.item(i).prcid,
+                        mobilenumber: data.rows.item(i).mobilenumber,
+                        emailadd: data.rows.item(i).emailadd,
+                        wavelia: data.rows.item(i).wavelia,
+                        useragree: data.rows.item(i).useragree,
+                        img: data.rows.item(i).img,
                     });
                 }
             }
-            this.products.next(products);
+            this.visitors.next(products);
         });
     }
-    addProduct(names) {
-        let data = [names];
-        return this.database.executeSql('INSERT INTO developer (names) VALUES (?)', data).then(data => {
-            this.loadProducts();
+    addVisitor(details) {
+        let data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
+        return this.database.executeSql('INSERT INTO visitor (names, prcid, mobilenumber, emailadd, wavelia, useragree, img) VALUES (?,?,?,?,?,?,?)', data).then(data => {
+            this.loadVisitors();
         });
     }
 };

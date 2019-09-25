@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"background ion-padding\"  >\n    <ion-grid >\n        <ion-row>\n          <ion-col class=\"ion-text-center\">\n            <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n          </ion-col>\n        </ion-row>\n        <!-- <ion-row  class=\"containertext ion-align-items-center\">\n            <ion-col >\n                <ion-input placeholder=\"SEARCH\" ></ion-input>\n            </ion-col>\n         </ion-row> -->\n         <ion-row class=\"containertext ion-align-items-center\">\n            <ion-col  >\n                <ion-list >\n                    <ion-item *ngFor=\"let prod of products | async\">\n                      <ion-label><h2>{{ prod.names }}</h2></ion-label>\n                    </ion-item>\n                  </ion-list>\n            </ion-col>\n         </ion-row>\n         <ion-row>\n            <ion-col  >\n                <ion-button  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" href=\"home\">BACK</ion-button>\n            </ion-col>\n         </ion-row>\n    </ion-grid>\n</ion-content>\n\n\n"
+module.exports = "<ion-content class=\"background ion-padding\">\n  <ion-grid>\n    <ion-row>\n      <ion-col class=\"ion-text-center\">\n        <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n      </ion-col>\n    </ion-row>\n    <!-- <ion-row  class=\"containertext ion-align-items-center\">\n            <ion-col >\n                <ion-input placeholder=\"SEARCH\" ></ion-input>\n            </ion-col>\n         </ion-row> -->\n    <ion-row class=\"containertext ion-align-items-center\">\n      <ion-col>\n        <ion-list>\n          <ion-item *ngFor=\"let visit of visitors\">\n            <ion-label>\n              <h2>{{ visit.names }}</h2>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <ion-button shape=\"round\" fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" href=\"home\">\n          BACK</ion-button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
 
 /***/ }),
 
@@ -95,17 +95,15 @@ var ReglistPage = /** @class */ (function () {
     function ReglistPage(storage, db) {
         this.storage = storage;
         this.db = db;
-        // developer = {};
-        this.product = {};
     }
     ReglistPage.prototype.ngOnInit = function () {
         var _this = this;
         this.db.getDatabaseState().subscribe(function (rdy) {
             if (rdy) {
-                // this.db.getDevs().subscribe(devs => {
-                //   this.developers = devs;
-                // })
-                _this.products = _this.db.getProducts();
+                _this.db.getList().subscribe(function (data) {
+                    _this.visitors = data;
+                    console.log(_this.visitors);
+                });
             }
         });
     };

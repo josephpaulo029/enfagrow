@@ -6,7 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  initName: any = "";
 
-  constructor() {}
+  constructor() { }
 
+  onRegister() {
+    if (this.initName == "") {
+
+    } else {
+
+    }
+  }
+
+  onNext() {
+
+  }
 }

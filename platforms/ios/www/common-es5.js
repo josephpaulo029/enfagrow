@@ -554,11 +554,10 @@ var DatabaseService = /** @class */ (function () {
         this.sqlite = sqlite;
         this.http = http;
         this.dbReady = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"](false);
-        // developers = new BehaviorSubject([]);
-        this.products = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"]([]);
+        this.visitors = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"]([]);
         this.plt.ready().then(function () {
             _this.sqlite.create({
-                name: 'developers.db',
+                name: 'events.db',
                 location: 'default'
             })
                 .then(function (db) {
@@ -573,8 +572,7 @@ var DatabaseService = /** @class */ (function () {
             .subscribe(function (sql) {
             _this.sqlitePorter.importSqlToDb(_this.database, sql)
                 .then(function (_) {
-                // this.loadDevelopers();
-                _this.loadProducts();
+                _this.loadVisitors();
                 _this.dbReady.next(true);
             })
                 .catch(function (e) { return console.error(e); });
@@ -583,54 +581,37 @@ var DatabaseService = /** @class */ (function () {
     DatabaseService.prototype.getDatabaseState = function () {
         return this.dbReady.asObservable();
     };
-    // getDevs(): Observable<Dev[]> {
-    //   return this.developers.asObservable();
-    // }
-    DatabaseService.prototype.getProducts = function () {
-        return this.products.asObservable();
+    DatabaseService.prototype.getList = function () {
+        return this.visitors.asObservable();
     };
-    // loadDevelopers() {
-    //   return this.database.executeSql('SELECT * FROM developer', []).then(data => {
-    //     let developers: Dev[] = [];
-    //     if (data.rows.length > 0) {
-    //       for (var i = 0; i < data.rows.length; i++) {
-    //         let skills = [];
-    //         if (data.rows.item(i).skills != '') {
-    //           skills = JSON.parse(data.rows.item(i).skills);
-    //         }
-    //         developers.push({ 
-    //           id: data.rows.item(i).id,
-    //           name: data.rows.item(i).name, 
-    //           skills: skills, 
-    //           img: data.rows.item(i).img
-    //          });
-    //       }
-    //     }
-    //     this.developers.next(developers);
-    //   });
-    // }
-    DatabaseService.prototype.loadProducts = function () {
+    DatabaseService.prototype.loadVisitors = function () {
         var _this = this;
         // let query = 'SELECT product.name, product.id, developer.name AS creator FROM product JOIN developer ON developer.id = product.creatorId';
-        var query = 'SELECT * FROM developer';
+        var query = 'SELECT * FROM visitor';
         return this.database.executeSql(query, []).then(function (data) {
             var products = [];
             if (data.rows.length > 0) {
                 for (var i = 0; i < data.rows.length; i++) {
                     products.push({
-                        names: data.rows.item(i).names,
                         id: data.rows.item(i).id,
+                        names: data.rows.item(i).names,
+                        prcid: data.rows.item(i).prcid,
+                        mobilenumber: data.rows.item(i).mobilenumber,
+                        emailadd: data.rows.item(i).emailadd,
+                        wavelia: data.rows.item(i).wavelia,
+                        useragree: data.rows.item(i).useragree,
+                        img: data.rows.item(i).img,
                     });
                 }
             }
-            _this.products.next(products);
+            _this.visitors.next(products);
         });
     };
-    DatabaseService.prototype.addProduct = function (names) {
+    DatabaseService.prototype.addVisitor = function (details) {
         var _this = this;
-        var data = [names];
-        return this.database.executeSql('INSERT INTO developer (names) VALUES (?)', data).then(function (data) {
-            _this.loadProducts();
+        var data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
+        return this.database.executeSql('INSERT INTO visitor (names, prcid, mobilenumber, emailadd, wavelia, useragree, img) VALUES (?,?,?,?,?,?,?)', data).then(function (data) {
+            _this.loadVisitors();
         });
     };
     DatabaseService.ctorParameters = function () { return [

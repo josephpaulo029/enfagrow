@@ -23,6 +23,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SignaturePadModule
   ],
-  declarations: [SecondregisterPage]
+  declarations: [
+    SecondregisterPage
+  ]
 })
-export class SecondregisterPageModule {}
+export class SecondregisterPageModule { }
