@@ -29,7 +29,7 @@
 			</ion-row>
 			<ion-row class="containertext">
 				<ion-col>
-					<ion-input name="names" ngModel required></ion-input>
+					<ion-input name="names" [(ngModel)]="names" required></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -48,7 +48,7 @@
 			</ion-row>
 			<ion-row class="containertext">
 				<ion-col>
-					<ion-input name="prcid" ngModel required></ion-input>
+					<ion-input name="prcid" [(ngModel)]="prcid" required></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -64,10 +64,10 @@
 				<ion-col>
 				</ion-col>
 				<ion-col class="containeremailphone ion-float-left">
-					<ion-input name="emailadd" ngModel required></ion-input>
+					<ion-input name="emailadd" [(ngModel)]="emailadd" required></ion-input>
 				</ion-col>
 				<ion-col class="containeremailphone ion-float-right">
-					<ion-input name="mobilenumber" ngModel required></ion-input>
+					<ion-input name="mobilenumber" [(ngModel)]="mobilenumber" required></ion-input>
 				</ion-col>
 				<ion-col>
 				</ion-col>

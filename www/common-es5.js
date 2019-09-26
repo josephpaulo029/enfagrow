@@ -614,6 +614,19 @@ var DatabaseService = /** @class */ (function () {
             _this.loadVisitors();
         });
     };
+    DatabaseService.prototype.updateVisitor = function (details) {
+        var _this = this;
+        var data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
+        return this.database.executeSql("UPDATE visitor SET names = ?, prcid = ?, mobilenumber = ?, emailadd = ?, wavelia = ?, useragree = ?, img = ? WHERE id = " + details.id, data).then(function (data) {
+            _this.loadVisitors();
+        });
+    };
+    DatabaseService.prototype.deleteVisitor = function (id) {
+        var _this = this;
+        return this.database.executeSql('DELETE FROM visitor WHERE id = ?', [id]).then(function (_) {
+            _this.loadVisitors();
+        });
+    };
     DatabaseService.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["Platform"] },
         { type: _ionic_native_sqlite_porter_ngx__WEBPACK_IMPORTED_MODULE_3__["SQLitePorter"] },

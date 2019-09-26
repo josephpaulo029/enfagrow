@@ -864,6 +864,17 @@ let DatabaseService = class DatabaseService {
             this.loadVisitors();
         });
     }
+    updateVisitor(details) {
+        let data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
+        return this.database.executeSql(`UPDATE visitor SET names = ?, prcid = ?, mobilenumber = ?, emailadd = ?, wavelia = ?, useragree = ?, img = ? WHERE id = ${details.id}`, data).then(data => {
+            this.loadVisitors();
+        });
+    }
+    deleteVisitor(id) {
+        return this.database.executeSql('DELETE FROM visitor WHERE id = ?', [id]).then(_ => {
+            this.loadVisitors();
+        });
+    }
 };
 DatabaseService.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["Platform"] },

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +9,20 @@ import { Component } from '@angular/core';
 export class HomePage {
   initName: any = "";
 
-  constructor() { }
+  constructor(
+    private router: Router,
 
-  onRegister() {
-    if (this.initName == "") {
+  ) { }
 
-    } else {
+  ngOnInit() {
+    this.initName = ""
+  }
 
-    }
+  ionViewDidEnter() {
+    this.initName = ""
   }
 
   onNext() {
-
+    this.router.navigate(['/secondregister', { names: this.initName }]);
   }
 }

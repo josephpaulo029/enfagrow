@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"background ion-padding\">\n\n\t<ion-grid>\n\t\t<form #info=\"ngForm\">\n\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containertext\">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-input name=\"names\" ngModel required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myfirsttext\">NAME</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"mysecondtext ion-text-center\">\n\t\t\t\t\t<ion-label>(LAST NAME, FIRST NAME, MIDDLE NAME)</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containertext\">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-input name=\"prcid\" ngModel required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myfirsttext\">PRC ID</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"containeremailphone ion-float-left\">\n\t\t\t\t\t<ion-input name=\"emailadd\" ngModel required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"containeremailphone ion-float-right\">\n\t\t\t\t\t<ion-input name=\"mobilenumber\" ngModel required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"myfirsttext ion-text-center ion-float-left\">\n\t\t\t\t\t<ion-label>EMAIL ADDRESS</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"myfirsttext ion-text-center ion-float-right\">\n\t\t\t\t\t<ion-label>MOBILE NUMBER</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\n\t\t\t<ion-row>\n\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myline\">________________________________________</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myfirsttext\">WAIVER RELEASE AND LIABILITY</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containertextarea ion-align-items-center\">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-textarea disabled=\"true\"><br />*WAIVER CONTENT*</ion-textarea>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containagree\">\n\t\t\t\t<ion-col size=\"1.5\">\n\t\t\t\t\t<ion-checkbox name=\"useragree\" class=\"checkbox-terms\" [(ngModel)]=\"checked\"></ion-checkbox>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-label class=\"terms-conditions\">I agree</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row [ngClass]=\"{'drawing-active': isDrawing}\" class=\"containerforpad \">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<signature-pad [options]=\"signaturePadOptions\" (onBeginEvent)=\"drawStart()\"\n\t\t\t\t\t\t(onEndEvent)=\"drawComplete()\"></signature-pad>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label>Signature</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<!-- <ion-row>\n\t\t\t\t<ion-col></ion-col>\n\t\t\t\t<ion-col class=\"ion-text-center\" width-80>\n\t\t\t\t  <img [src]=\"signature\"/>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col></ion-col>\n\t\t\t</ion-row> -->\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center \">\n\t\t\t\t\t<ion-button color=\"Tertiary\" (click)=\"clearPad()\">Clear</ion-button>\n\t\t\t\t\t<ion-button color=\"Tertiary\" (click)=\"savePad()\">Save</ion-button>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\n\t\t</form>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<ion-button shape=\"round\" fill=\"outline\" color=\"Tertiary\" class=\"ion-float-left\" position=\"bottom\"\n\t\t\t\t\thref=\"home\">BACK</ion-button>\n\t\t\t\t<ion-button [disabled]=\"!info.form.valid || !checked\" (click)=\"addProduct(info)\" shape=\"round\" fill=\"outline\" color=\"Tertiary\"\n\t\t\t\t\tclass=\"ion-float-right\" position=\"bottom\">SUBMIT</ion-button>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t</ion-grid>\n\n</ion-content>"
+module.exports = "<ion-content class=\"background ion-padding\">\n\n\t<ion-grid>\n\t\t<form #info=\"ngForm\">\n\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containertext\">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-input name=\"names\" [(ngModel)]=\"names\" required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myfirsttext\">NAME</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"mysecondtext ion-text-center\">\n\t\t\t\t\t<ion-label>(LAST NAME, FIRST NAME, MIDDLE NAME)</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containertext\">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-input name=\"prcid\" [(ngModel)]=\"prcid\" required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myfirsttext\">PRC ID</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"containeremailphone ion-float-left\">\n\t\t\t\t\t<ion-input name=\"emailadd\" [(ngModel)]=\"emailadd\" required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"containeremailphone ion-float-right\">\n\t\t\t\t\t<ion-input name=\"mobilenumber\" [(ngModel)]=\"mobilenumber\" required></ion-input>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"myfirsttext ion-text-center ion-float-left\">\n\t\t\t\t\t<ion-label>EMAIL ADDRESS</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col class=\"myfirsttext ion-text-center ion-float-right\">\n\t\t\t\t\t<ion-label>MOBILE NUMBER</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\n\t\t\t<ion-row>\n\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myline\">________________________________________</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label class=\"myfirsttext\">WAIVER RELEASE AND LIABILITY</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containertextarea ion-align-items-center\">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-textarea disabled=\"true\"><br />*WAIVER CONTENT*</ion-textarea>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row class=\"containagree\">\n\t\t\t\t<ion-col size=\"1.5\">\n\t\t\t\t\t<ion-checkbox name=\"useragree\" class=\"checkbox-terms\" [(ngModel)]=\"checked\"></ion-checkbox>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col>\n\t\t\t\t\t<ion-label class=\"terms-conditions\">I agree</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row [ngClass]=\"{'drawing-active': isDrawing}\" class=\"containerforpad \">\n\t\t\t\t<ion-col>\n\t\t\t\t\t<signature-pad [options]=\"signaturePadOptions\" (onBeginEvent)=\"drawStart()\"\n\t\t\t\t\t\t(onEndEvent)=\"drawComplete()\"></signature-pad>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center\">\n\t\t\t\t\t<ion-label>Signature</ion-label>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\t\t\t<!-- <ion-row>\n\t\t\t\t<ion-col></ion-col>\n\t\t\t\t<ion-col class=\"ion-text-center\" width-80>\n\t\t\t\t  <img [src]=\"signature\"/>\n\t\t\t\t</ion-col>\n\t\t\t\t<ion-col></ion-col>\n\t\t\t</ion-row> -->\n\t\t\t<ion-row>\n\t\t\t\t<ion-col class=\"ion-text-center \">\n\t\t\t\t\t<ion-button color=\"Tertiary\" (click)=\"clearPad()\">Clear</ion-button>\n\t\t\t\t\t<ion-button color=\"Tertiary\" (click)=\"savePad()\">Save</ion-button>\n\t\t\t\t</ion-col>\n\t\t\t</ion-row>\n\n\t\t</form>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<ion-button shape=\"round\" fill=\"outline\" color=\"Tertiary\" class=\"ion-float-left\" position=\"bottom\"\n\t\t\t\t\thref=\"home\">BACK</ion-button>\n\t\t\t\t<ion-button [disabled]=\"!info.form.valid || !checked\" (click)=\"addProduct(info)\" shape=\"round\" fill=\"outline\" color=\"Tertiary\"\n\t\t\t\t\tclass=\"ion-float-right\" position=\"bottom\">SUBMIT</ion-button>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t</ion-grid>\n\n</ion-content>"
 
 /***/ }),
 
@@ -92,20 +92,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular2_signaturepad_signature_pad__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(angular2_signaturepad_signature_pad__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/dist/index.js");
 /* harmony import */ var _services_database_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../services/database.service */ "./src/app/services/database.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
 
 
 let SecondregisterPage = class SecondregisterPage {
-    constructor(storage, db) {
+    constructor(storage, db, route, router) {
         this.storage = storage;
         this.db = db;
+        this.route = route;
+        this.router = router;
         this.product = {};
         this.selectedView = 'devs';
         this.signature = '';
         this.isDrawing = false;
         this.checked = false;
+        this.isExisting = false;
         this.signaturePadOptions = {
             'minWidth': 2,
             'canvasWidth': 400,
@@ -117,31 +122,75 @@ let SecondregisterPage = class SecondregisterPage {
     ngOnInit() {
         this.db.getDatabaseState().subscribe(rdy => {
             if (rdy) {
-                // this.db.getDevs().subscribe(devs => {
-                //   this.developers = devs;
-                // })
-                this.products = this.db.getList();
+                this.db.getList().subscribe(data => {
+                    this.visitors = data;
+                    console.log(this.visitors);
+                    this.route.params.subscribe(params => {
+                        console.log(params);
+                        let param = params['names'];
+                        if (param == "") {
+                            this.infoFrm.reset();
+                        }
+                        else {
+                            this.names = param;
+                            this.visitors.forEach(visit => {
+                                if (visit['names'] == this.names) {
+                                    this.isExisting = true;
+                                    this.existingVisitor = visit;
+                                    this.prcid = this.existingVisitor.prcid;
+                                    this.mobilenumber = this.existingVisitor.mobilenumber;
+                                    this.emailadd = this.existingVisitor.emailadd;
+                                }
+                            });
+                        }
+                        // In a real app: dispatch action to load the details here.
+                    });
+                });
             }
         });
-        this.signature = "";
     }
     ngAfterViewInit() {
         // this.signaturePad is now available
         // this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
         this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
+        this.signature = "";
+    }
+    clearFrm() {
+        this.names = "";
+        this.prcid = "";
+        this.mobilenumber = "";
+        this.emailadd = "";
     }
     addProduct(info) {
-        console.log(info.value);
         let details;
         details = info.value;
         details.img = this.signature;
         details.wavelia = "";
+        console.log(this.isExisting);
+        if (this.isExisting == false) {
+            console.log('not', details);
+            this.db.addVisitor(details)
+                .then(_ => {
+                this.signature = "";
+                this.signaturePad.clear();
+                this.infoFrm.reset();
+                this.clearFrm();
+                this.router.navigate(['/home']);
+            });
+        }
+        else {
+            details.id = this.existingVisitor.id;
+            console.log('yeah', details);
+            this.db.updateVisitor(details)
+                .then(_ => {
+                this.signature = "";
+                this.signaturePad.clear();
+                this.infoFrm.reset();
+                this.clearFrm();
+                this.router.navigate(['/home']);
+            });
+        }
         console.log(details);
-        this.db.addVisitor(details)
-            .then(_ => {
-            this.signaturePad.clear();
-            this.infoFrm.reset();
-        });
     }
     ionViewDidEnter() {
         this.signaturePad.clear();
@@ -149,7 +198,6 @@ let SecondregisterPage = class SecondregisterPage {
         this.storage.get('savedSignature').then((data) => {
             this.signature = data;
         });
-        this.infoFrm.reset();
     }
     drawComplete() {
         // will be notified of szimek/signature_pad's onEnd event
@@ -179,7 +227,9 @@ let SecondregisterPage = class SecondregisterPage {
 };
 SecondregisterPage.ctorParameters = () => [
     { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"] },
-    { type: _services_database_service__WEBPACK_IMPORTED_MODULE_4__["DatabaseService"] }
+    { type: _services_database_service__WEBPACK_IMPORTED_MODULE_4__["DatabaseService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('info', { static: false }),
@@ -195,7 +245,10 @@ SecondregisterPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./secondregister.page.html */ "./node_modules/raw-loader/index.js!./src/app/secondregister/secondregister.page.html"),
         styles: [__webpack_require__(/*! ./secondregister.page.scss */ "./src/app/secondregister/secondregister.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"], _services_database_service__WEBPACK_IMPORTED_MODULE_4__["DatabaseService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"],
+        _services_database_service__WEBPACK_IMPORTED_MODULE_4__["DatabaseService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
 ], SecondregisterPage);
 
 

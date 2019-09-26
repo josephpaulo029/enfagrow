@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { DatabaseService, Dev } from './../services/database.service';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-secondregister',
@@ -21,6 +22,13 @@ export class SecondregisterPage implements OnInit {
   signature = '';
   isDrawing = false;
   checked: Boolean = false;
+  isExisting: Boolean = false;
+  existingVisitor: any
+  names: any
+  prcid: any
+  emailadd: any
+  mobilenumber: any
+
   @ViewChild('info', { static: false }) infoFrm
 
   @ViewChild(SignaturePad, { static: true }) signaturePad: SignaturePad;
@@ -32,7 +40,13 @@ export class SecondregisterPage implements OnInit {
     'penColor': '#666a73'
   };
 
-  constructor(public storage: Storage, private db: DatabaseService) { }
+  constructor(
+    public storage: Storage,
+    private db: DatabaseService,
+    private route: ActivatedRoute,
+    private router: Router,
+
+  ) { }
 
   ngOnInit() {
     this.db.getDatabaseState().subscribe(rdy => {
@@ -40,7 +54,25 @@ export class SecondregisterPage implements OnInit {
         this.db.getList().subscribe(data => {
           this.visitors = data;
           console.log(this.visitors)
-
+          this.route.params.subscribe(params => {
+            console.log(params)
+            let param = params['names'];
+            if (param == "") {
+              this.infoFrm.reset()
+            } else {
+              this.names = param
+              this.visitors.forEach(visit => {
+                if (visit['names'] == this.names) {
+                  this.isExisting = true
+                  this.existingVisitor = visit
+                  this.prcid = this.existingVisitor.prcid
+                  this.mobilenumber = this.existingVisitor.mobilenumber
+                  this.emailadd = this.existingVisitor.emailadd
+                }
+              });
+            }
+            // In a real app: dispatch action to load the details here.
+          });
         })
       }
     });
@@ -54,19 +86,48 @@ export class SecondregisterPage implements OnInit {
 
   }
 
+  clearFrm() {
+    this.names = ""
+    this.prcid = ""
+    this.mobilenumber = ""
+    this.emailadd = ""
+  }
+
   addProduct(info: NgForm) {
-    console.log(info.value)
     let details;
     details = info.value;
     details.img = this.signature;
     details.wavelia = ""
+    console.log(this.isExisting)
+
+    if (this.isExisting == false) {
+      console.log('not', details)
+
+      this.db.addVisitor(details)
+        .then(_ => {
+          this.signature = ""
+          this.signaturePad.clear()
+          this.infoFrm.reset()
+          this.clearFrm()
+          this.router.navigate(['/home']);
+
+        });
+    } else {
+      details.id = this.existingVisitor.id
+      console.log('yeah', details)
+
+      this.db.updateVisitor(details)
+        .then(_ => {
+          this.signature = ""
+          this.signaturePad.clear()
+          this.infoFrm.reset()
+          this.clearFrm()
+          this.router.navigate(['/home']);
+
+        });
+    }
     console.log(details)
-    this.db.addVisitor(details)
-      .then(_ => {
-        this.signature = ""
-        this.signaturePad.clear()
-        this.infoFrm.reset()
-      });
+
   }
 
   ionViewDidEnter() {
@@ -75,7 +136,6 @@ export class SecondregisterPage implements OnInit {
     this.storage.get('savedSignature').then((data) => {
       this.signature = data;
     });
-    this.infoFrm.reset()
   }
 
   drawComplete() {

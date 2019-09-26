@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"background ion-padding\" >\n<ion-grid >\n        <ion-row>\n          <ion-col class=\"ion-text-center\">\n            <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"containertext ion-align-items-center\">\n            <ion-col  >\n\t\t\t\t<ion-input placeholder=\"Name\" ></ion-input>\n            </ion-col>\n         </ion-row>\n         <ion-row>\n            <ion-col  class=\"ion-text-center\">\n\t\t\t    <ion-button shape=\"round\" expand=\"default\" fill=\"outline\" color=\"#2d355e\" href=\"secondregister\">Register</ion-button>\n            </ion-col>\n\t\t </ion-row>\n\t\t <ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t    </ion-row>\n         <ion-row>\n            <ion-col>\n\t\t\t\t\t<ion-button  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-left\" position=\"bottom\" href=\"reglist\" >ADMIN</ion-button>\n\t\t\t\t\t<ion-button  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" href=\"secondregister\">NEXT</ion-button>\n            </ion-col>\n         </ion-row>\n</ion-grid>\n</ion-content>\n\n\n"
+module.exports = "<ion-content class=\"background ion-padding\" >\n<ion-grid >\n        <ion-row>\n          <ion-col class=\"ion-text-center\">\n            <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"containertext ion-align-items-center\">\n            <ion-col  >\n\t\t\t\t<ion-input name=\"names\" placeholder=\"Name\" [(ngModel)]=\"initName\"></ion-input>\n            </ion-col>\n         </ion-row>\n         <ion-row>\n            <ion-col  class=\"ion-text-center\">\n\t\t\t    <ion-button shape=\"round\" expand=\"default\" fill=\"outline\" color=\"#2d355e\" (click)=\"onNext()\">Register</ion-button>\n            </ion-col>\n\t\t </ion-row>\n\t\t <ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t    </ion-row>\n         <ion-row>\n            <ion-col>\n\t\t\t\t\t<ion-button  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-left\" position=\"bottom\" href=\"reglist\" >ADMIN</ion-button>\n\t\t\t\t\t<ion-button [disabled]=\"initName == ''\"  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" (click)=\"onNext()\">NEXT</ion-button>\n            </ion-col>\n         </ion-row>\n</ion-grid>\n</ion-content>\n\n\n"
 
 /***/ }),
 
@@ -35,6 +35,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const routes = [
+    {
+        path: '',
+        component: _home_page__WEBPACK_IMPORTED_MODULE_6__["HomePage"]
+    }
+];
 let HomePageModule = class HomePageModule {
 };
 HomePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -43,14 +49,11 @@ HomePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forChild([
-                {
-                    path: '',
-                    component: _home_page__WEBPACK_IMPORTED_MODULE_6__["HomePage"]
-                }
-            ])
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forChild(routes),
         ],
-        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_6__["HomePage"]]
+        declarations: [
+            _home_page__WEBPACK_IMPORTED_MODULE_6__["HomePage"]
+        ]
     })
 ], HomePageModule);
 
@@ -81,18 +84,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return HomePage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 let HomePage = class HomePage {
-    constructor() { }
+    constructor(router) {
+        this.router = router;
+        this.initName = "";
+    }
+    ngOnInit() {
+        this.initName = "";
+    }
+    ionViewDidEnter() {
+        this.initName = "";
+    }
+    onNext() {
+        this.router.navigate(['/secondregister', { names: this.initName }]);
+    }
 };
+HomePage.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+];
 HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-home',
         template: __webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.page.html"),
         styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
 ], HomePage);
 
 

@@ -17,11 +17,6 @@ var map = {
 		"common",
 		"reglist-reglist-module"
 	],
-	"./secondregister/secondregister.module": [
-		"./src/app/secondregister/secondregister.module.ts",
-		"common",
-		"secondregister-secondregister-module"
-	],
 	"./successreg/successreg.module": [
 		"./src/app/successreg/successreg.module.ts",
 		"successreg-successreg-module"
@@ -508,7 +503,7 @@ var routes = [
     { path: 'reglist', loadChildren: './reglist/reglist.module#ReglistPageModule' },
     { path: 'waveandsign', loadChildren: './waveandsign/waveandsign.module#WaveandsignPageModule' },
     { path: 'successreg', loadChildren: './successreg/successreg.module#SuccessregPageModule' },
-    { path: 'secondregister', loadChildren: './secondregister/secondregister.module#SecondregisterPageModule' },
+    { path: 'secondregister', loadChildren: function () { return Promise.all(/*! import() | secondregister-secondregister-module */[__webpack_require__.e("common"), __webpack_require__.e("secondregister-secondregister-module")]).then(__webpack_require__.bind(null, /*! ./secondregister/secondregister.module */ "./src/app/secondregister/secondregister.module.ts")).then(function (m) { return m.SecondregisterPageModule; }); } },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -641,7 +636,14 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
             entryComponents: [],
-            imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], angular2_signaturepad__WEBPACK_IMPORTED_MODULE_9__["SignaturePadModule"], _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"]],
+            imports: [
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
+                angular2_signaturepad__WEBPACK_IMPORTED_MODULE_9__["SignaturePadModule"],
+                _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot(),
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"],
+            ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
