@@ -100,7 +100,84 @@
 			</ion-row>
 			<ion-row class="containertextarea ion-align-items-center">
 				<ion-col>
-					<ion-textarea disabled="true"><br />*WAIVER CONTENT*</ion-textarea>
+					<ion-list style="overflow-y: scroll !important; display: inline-block; height: 140px;">
+						DATA PRIVACY CONSENT / AGREEMENT
+
+						Mead Johnson Nutrition, Inc., and Oncuemedia, Inc. (the “Organizers”) recognize their
+						responsibilities under the Republic Act No. 10173, also known as the Data Privacy Act of 2012,
+						with respect to the data they collect, record, organize, update, use, consolidate, or destruct
+						from the participants.
+
+						The Organizers shall not disclose the participant’s personal information without their consent
+						and shall retain this information over the whole duration of the organizer’s event for the
+						effective implementation and management of the roundtable discussions.
+
+						I hereby indicate that I have read the Organizer’s Data Privacy Statement and express my consent
+						for the Organizers to collect, record, organize, update, modify, retrieve, consult, use,
+						consolidate, block, erase, or destruct my personal data as part of my information.
+
+						NON-DISCLOSURE AGREEMENT
+
+						It is understood and agreed to that the below identified discloser of confidential information
+						may provide certain information that is and must be kept confidential. To ensure the protection
+						of such information, and to preserve any confidentiality necessary under patent and/or trade
+						secret laws, it is agreed that:
+
+						- The Confidential Information to be disclosed can be described as and includes:
+
+						Invention description(s), technical and business information relating to proprietary ideas and
+						inventions, ideas, patentable ideas, trade secrets, drawings and/or illustrations, patent
+						searches, existing and/or contemplated products and services, research and development,
+						production, costs, profit and margin information, finances and financial projections, customers,
+						clients, marketing, and current or future business plans and models, at the time of its
+						disclosure.
+
+						- The Recipient agrees not to disclose the confidential information obtained from the discloser
+						to anyone unless required to do so by law.
+
+						By clicking “I Agree”, the Data Privacy Consent and the Non-Disclosure Agreement and each
+						party’s obligations shall be binding on the representatives. The participant acknowledges that
+						they have read and understand these agreements and voluntarily accept the duties and obligations
+						set forth herein.
+					</ion-list>
+					<ion-textarea *ngIf="false" disabled="true" rows="6"><br />DATA PRIVACY CONSENT / AGREEMENT
+
+						Mead Johnson Nutrition, Inc., and Oncuemedia, Inc. (the “Organizers”) recognize their
+						responsibilities under the Republic Act No. 10173, also known as the Data Privacy Act of 2012,
+						with respect to the data they collect, record, organize, update, use, consolidate, or destruct
+						from the participants.
+
+						The Organizers shall not disclose the participant’s personal information without their consent
+						and shall retain this information over the whole duration of the organizer’s event for the
+						effective implementation and management of the roundtable discussions.
+
+						I hereby indicate that I have read the Organizer’s Data Privacy Statement and express my consent
+						for the Organizers to collect, record, organize, update, modify, retrieve, consult, use,
+						consolidate, block, erase, or destruct my personal data as part of my information.
+
+						NON-DISCLOSURE AGREEMENT
+
+						It is understood and agreed to that the below identified discloser of confidential information
+						may provide certain information that is and must be kept confidential. To ensure the protection
+						of such information, and to preserve any confidentiality necessary under patent and/or trade
+						secret laws, it is agreed that:
+
+						- The Confidential Information to be disclosed can be described as and includes:
+
+						Invention description(s), technical and business information relating to proprietary ideas and
+						inventions, ideas, patentable ideas, trade secrets, drawings and/or illustrations, patent
+						searches, existing and/or contemplated products and services, research and development,
+						production, costs, profit and margin information, finances and financial projections, customers,
+						clients, marketing, and current or future business plans and models, at the time of its
+						disclosure.
+
+						- The Recipient agrees not to disclose the confidential information obtained from the discloser
+						to anyone unless required to do so by law.
+
+						By clicking “I Agree”, the Data Privacy Consent and the Non-Disclosure Agreement and each
+						party’s obligations shall be binding on the representatives. The participant acknowledges that
+						they have read and understand these agreements and voluntarily accept the duties and obligations
+						set forth herein.</ion-textarea>
 				</ion-col>
 			</ion-row>
 			<ion-row class="containagree">
@@ -141,8 +218,8 @@
 			<ion-col>
 				<ion-button shape="round" fill="outline" color="Tertiary" class="ion-float-left" position="bottom"
 					href="home">BACK</ion-button>
-				<ion-button [disabled]="!info.form.valid || !checked" (click)="addProduct(info)" shape="round" fill="outline" color="Tertiary"
-					class="ion-float-right" position="bottom">SUBMIT</ion-button>
+				<ion-button [disabled]="!info.form.valid || !checked" (click)="addProduct(info)" shape="round"
+					fill="outline" color="Tertiary" class="ion-float-right" position="bottom">SUBMIT</ion-button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
