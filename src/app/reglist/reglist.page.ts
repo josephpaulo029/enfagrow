@@ -12,9 +12,7 @@ import { Observable } from 'rxjs';
 export class ReglistPage implements OnInit {
 
   // visitors: Observable<any[]>;
-  visitors: any;
-
-
+  visitors = [];
 
   constructor(public storage: Storage, private db: DatabaseService) { }
 
@@ -22,7 +20,13 @@ export class ReglistPage implements OnInit {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
         this.db.getList().subscribe(data => {
-          this.visitors = data;
+
+          data.forEach(element => {
+            if (element.useragree == 1) {
+              this.visitors.push(element)
+            }
+          });
+          // this.visitors = data;
           console.log(this.visitors)
 
         })

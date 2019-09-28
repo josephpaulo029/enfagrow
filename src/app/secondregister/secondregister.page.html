@@ -218,7 +218,7 @@
 			<ion-col>
 				<ion-button shape="round" fill="outline" color="Tertiary" class="ion-float-left" position="bottom"
 					href="home">BACK</ion-button>
-				<ion-button [disabled]="!info.form.valid || !checked" (click)="addProduct(info)" shape="round"
+				<ion-button [disabled]="!info.form.valid || !checked || !signed" (click)="addProduct(info)" shape="round"
 					fill="outline" color="Tertiary" class="ion-float-right" position="bottom">SUBMIT</ion-button>
 			</ion-col>
 		</ion-row>

@@ -22,6 +22,7 @@ export class SecondregisterPage implements OnInit {
   signature = '';
   isDrawing = false;
   checked: Boolean = false;
+  signed: Boolean = false;
   isExisting: Boolean = false;
   existingVisitor: any
   names: any
@@ -84,6 +85,7 @@ export class SecondregisterPage implements OnInit {
     // this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
     this.signature = ""
+    this.signed = false;
 
   }
 
@@ -97,6 +99,7 @@ export class SecondregisterPage implements OnInit {
   addProduct(info: NgForm) {
     let details;
     details = info.value;
+    details.useragree = details.useragree ? '1' : '0'
     details.img = this.signature;
     details.wavelia = "";
     details.useragree = "1";
@@ -134,6 +137,7 @@ export class SecondregisterPage implements OnInit {
 
   ionViewDidEnter() {
     this.signaturePad.clear()
+    this.signed = false;
     this.signature = ""
     this.storage.get('savedSignature').then((data) => {
       this.signature = data;
@@ -143,6 +147,7 @@ export class SecondregisterPage implements OnInit {
   drawComplete() {
     // will be notified of szimek/signature_pad's onEnd event
     this.isDrawing = false;
+    this.signed = true;
     this.signature = this.signaturePad.toDataURL();
     this.storage.set('savedSignature', this.signature);
     console.log(this.signaturePad.toDataURL());
