@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  initName: any = "";
+  initprcid: any = "";
 
   constructor(
     private router: Router,
@@ -15,14 +15,14 @@ export class HomePage {
   ) { }
 
   ngOnInit() {
-    this.initName = ""
+    this.initprcid = ""
   }
 
   ionViewDidEnter() {
-    this.initName = ""
+    this.initprcid = ""
   }
 
   onNext() {
-    this.router.navigate(['/secondregister', { names: this.initName }]);
+    this.router.navigate(['/secondregister', { prcid: this.initprcid }]);
   }
 }

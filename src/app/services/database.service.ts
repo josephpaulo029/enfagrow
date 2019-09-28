@@ -20,6 +20,7 @@ export class DatabaseService {
   private dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   visitors = new BehaviorSubject([]);
+  visitorslist = new BehaviorSubject([]);
 
   constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
     this.plt.ready().then(() => {
@@ -65,8 +66,8 @@ export class DatabaseService {
             id: data.rows.item(i).id,
             names: data.rows.item(i).names,
             prcid: data.rows.item(i).prcid,
-            mobilenumber: data.rows.item(i).mobilenumber,
-            emailadd: data.rows.item(i).emailadd,
+            // mobilenumber: data.rows.item(i).mobilenumber,
+            // emailadd: data.rows.item(i).emailadd,
             wavelia: data.rows.item(i).wavelia,
             useragree: data.rows.item(i).useragree,
             img: data.rows.item(i).img,
@@ -79,14 +80,14 @@ export class DatabaseService {
   }
 
   addVisitor(details) {
-    let data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
+    let data = [details.names, details.prcid, details.wavelia, details.useragree, details.img];
     return this.database.executeSql('INSERT INTO visitor (names, prcid, mobilenumber, emailadd, wavelia, useragree, img) VALUES (?,?,?,?,?,?,?)', data).then(data => {
       this.loadVisitors();
     });
   }
 
   updateVisitor(details) {
-    let data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
+    let data = [details.names, details.prcid, details.wavelia, details.useragree, details.img];
     return this.database.executeSql(`UPDATE visitor SET names = ?, prcid = ?, mobilenumber = ?, emailadd = ?, wavelia = ?, useragree = ?, img = ? WHERE id = ${details.id}`, data).then(data => {
       this.loadVisitors();
     })

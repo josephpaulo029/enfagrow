@@ -26,8 +26,8 @@ export class SecondregisterPage implements OnInit {
   existingVisitor: any
   names: any
   prcid: any
-  emailadd: any
-  mobilenumber: any
+  // emailadd: any
+  // mobilenumber: any
 
   @ViewChild('info', { static: false }) infoFrm
 
@@ -56,18 +56,19 @@ export class SecondregisterPage implements OnInit {
           console.log(this.visitors)
           this.route.params.subscribe(params => {
             console.log(params)
-            let param = params['names'];
+            let param = params['prcid'];
             if (param == "") {
               this.infoFrm.reset()
             } else {
-              this.names = param
+              this.prcid = param
               this.visitors.forEach(visit => {
-                if (visit['names'] == this.names) {
+                if (visit['prcid'] == this.prcid) {
                   this.isExisting = true
                   this.existingVisitor = visit
+                  this.names = this.existingVisitor.names
                   this.prcid = this.existingVisitor.prcid
-                  this.mobilenumber = this.existingVisitor.mobilenumber
-                  this.emailadd = this.existingVisitor.emailadd
+                  // this.mobilenumber = this.existingVisitor.mobilenumber
+                  // this.emailadd = this.existingVisitor.emailadd
                 }
               });
             }
@@ -89,15 +90,16 @@ export class SecondregisterPage implements OnInit {
   clearFrm() {
     this.names = ""
     this.prcid = ""
-    this.mobilenumber = ""
-    this.emailadd = ""
+    // this.mobilenumber = ""
+    // this.emailadd = ""
   }
 
   addProduct(info: NgForm) {
     let details;
     details = info.value;
     details.img = this.signature;
-    details.wavelia = ""
+    details.wavelia = "";
+    details.useragree = "1";
     console.log(this.isExisting)
 
     if (this.isExisting == false) {
@@ -109,7 +111,7 @@ export class SecondregisterPage implements OnInit {
           this.signaturePad.clear()
           this.infoFrm.reset()
           this.clearFrm()
-          this.router.navigate(['/home']);
+          this.router.navigate(['/successreg']);
 
         });
     } else {
@@ -122,7 +124,7 @@ export class SecondregisterPage implements OnInit {
           this.signaturePad.clear()
           this.infoFrm.reset()
           this.clearFrm()
-          this.router.navigate(['/home']);
+          this.router.navigate(['/successreg']);
 
         });
     }

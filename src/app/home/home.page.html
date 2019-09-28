@@ -7,7 +7,7 @@
         </ion-row>
         <ion-row class="containertext ion-align-items-center">
             <ion-col  >
-				<ion-input name="names" placeholder="Name" [(ngModel)]="initName"></ion-input>
+				<ion-input name="prcid" placeholder="PRC ID" [(ngModel)]="initprcid"></ion-input>
             </ion-col>
          </ion-row>
          <ion-row>
@@ -33,7 +33,7 @@
          <ion-row>
             <ion-col>
 					<ion-button  shape="round"  fill="outline" color="Tertiary" class="ion-float-left" position="bottom" href="reglist" >ADMIN</ion-button>
-					<ion-button [disabled]="initName == ''"  shape="round"  fill="outline" color="Tertiary" class="ion-float-right" position="bottom" (click)="onNext()">NEXT</ion-button>
+					<ion-button [disabled]="initprcid == ''"  shape="round"  fill="outline" color="Tertiary" class="ion-float-right" position="bottom" (click)="onNext()">NEXT</ion-button>
             </ion-col>
          </ion-row>
 </ion-grid>
