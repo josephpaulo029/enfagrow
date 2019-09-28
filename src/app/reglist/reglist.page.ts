@@ -19,15 +19,15 @@ export class ReglistPage implements OnInit {
   jsonData = [
     {
       prcid: '001',
-      name: "Anil Singh",
+      names: "Anil Singh",
     },
     {
       prcid: '002',
-      name: 'Reena Singh',
+      names: 'Reena Singh',
     },
     {
       prcid: '003',
-      name: 'Aradhya',
+      names: 'Aradhya',
     },
   ];
 
