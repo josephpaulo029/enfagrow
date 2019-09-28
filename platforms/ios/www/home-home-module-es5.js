@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"background ion-padding\" >\n<ion-grid >\n        <ion-row>\n          <ion-col class=\"ion-text-center\">\n            <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"containertext ion-align-items-center\">\n            <ion-col  >\n\t\t\t\t<ion-input name=\"names\" placeholder=\"Name\" [(ngModel)]=\"initName\"></ion-input>\n            </ion-col>\n         </ion-row>\n         <ion-row>\n            <ion-col  class=\"ion-text-center\">\n\t\t\t    <ion-button shape=\"round\" expand=\"default\" fill=\"outline\" color=\"#2d355e\" (click)=\"onNext()\">Register</ion-button>\n            </ion-col>\n\t\t </ion-row>\n\t\t <ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t    </ion-row>\n         <ion-row>\n            <ion-col>\n\t\t\t\t\t<ion-button  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-left\" position=\"bottom\" href=\"reglist\" >ADMIN</ion-button>\n\t\t\t\t\t<ion-button [disabled]=\"initName == ''\"  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" (click)=\"onNext()\">NEXT</ion-button>\n            </ion-col>\n         </ion-row>\n</ion-grid>\n</ion-content>\n\n\n"
+module.exports = "<ion-content class=\"background ion-padding\" >\n<ion-grid >\n        <ion-row>\n          <ion-col class=\"ion-text-center\">\n            <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"containertext ion-align-items-center\">\n            <ion-col  >\n\t\t\t\t<ion-input name=\"prcid\" placeholder=\"PRC ID\" [(ngModel)]=\"initprcid\"></ion-input>\n            </ion-col>\n         </ion-row>\n         <ion-row>\n            <ion-col  class=\"ion-text-center\">\n\t\t\t    <ion-button shape=\"round\" expand=\"default\" fill=\"outline\" color=\"#2d355e\" (click)=\"onNext()\">Register</ion-button>\n            </ion-col>\n\t\t </ion-row>\n\t\t <ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\n\t\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t\t<ion-col>\n\t\t\t\t\t\n\t\t\t\t</ion-col>\n\t    </ion-row>\n         <ion-row>\n            <ion-col>\n\t\t\t\t\t<ion-button  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-left\" position=\"bottom\" href=\"reglist\" >ADMIN</ion-button>\n\t\t\t\t\t<ion-button [disabled]=\"initprcid == ''\"  shape=\"round\"  fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" (click)=\"onNext()\">NEXT</ion-button>\n            </ion-col>\n         </ion-row>\n</ion-grid>\n</ion-content>\n\n\n"
 
 /***/ }),
 
@@ -94,16 +94,16 @@ __webpack_require__.r(__webpack_exports__);
 var HomePage = /** @class */ (function () {
     function HomePage(router) {
         this.router = router;
-        this.initName = "";
+        this.initprcid = "";
     }
     HomePage.prototype.ngOnInit = function () {
-        this.initName = "";
+        this.initprcid = "";
     };
     HomePage.prototype.ionViewDidEnter = function () {
-        this.initName = "";
+        this.initprcid = "";
     };
     HomePage.prototype.onNext = function () {
-        this.router.navigate(['/secondregister', { names: this.initName }]);
+        this.router.navigate(['/secondregister', { prcid: this.initprcid }]);
     };
     HomePage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }

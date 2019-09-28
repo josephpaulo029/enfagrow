@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"background ion-padding\">\n  <ion-grid>\n    <ion-row>\n      <ion-col class=\"ion-text-center\">\n        <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n      </ion-col>\n    </ion-row>\n    <!-- <ion-row  class=\"containertext ion-align-items-center\">\n            <ion-col >\n                <ion-input placeholder=\"SEARCH\" ></ion-input>\n            </ion-col>\n         </ion-row> -->\n    <ion-row class=\"containertext ion-align-items-center\">\n      <ion-col>\n        <ion-list>\n          <ion-item *ngFor=\"let visit of visitors\">\n            <ion-label>\n              <h2>{{ visit.names }}</h2>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <ion-button shape=\"round\" fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" href=\"home\">\n          BACK</ion-button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
+module.exports = "<ion-content class=\"background ion-padding\">\n  <ion-grid>\n    <ion-row>\n      <ion-col class=\"ion-text-center\">\n        <ion-img class=\"displayed\" src=\"../assets/images/enfagrow_logo.png\"></ion-img>\n      </ion-col>\n    </ion-row>\n    <!-- <ion-row  class=\"containertext ion-align-items-center\">\n            <ion-col >\n                <ion-input placeholder=\"SEARCH\" ></ion-input>\n            </ion-col>\n         </ion-row> -->\n    <ion-button (click)=\"exportSqlite()\">\n      EXPORT\n    </ion-button>\n    <ion-row class=\"containertext ion-align-items-center\">\n      <ion-col>\n        <ion-list>\n          <ion-item *ngFor=\"let visit; of visitors\">\n            <ion-label>\n              <h2>{{ visit.names }}</h2>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <ion-button shape=\"round\" fill=\"outline\" color=\"Tertiary\" class=\"ion-float-right\" position=\"bottom\" href=\"home\">\n          BACK</ion-button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
 
 /***/ }),
 
@@ -87,29 +87,149 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/dist/index.js");
 /* harmony import */ var _services_database_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/database.service */ "./src/app/services/database.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/social-sharing/ngx */ "./node_modules/@ionic-native/social-sharing/ngx/index.js");
+/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
+
+
+
 
 
 
 
 var ReglistPage = /** @class */ (function () {
-    function ReglistPage(storage, db) {
+    function ReglistPage(storage, db, plt, socialSharing, file) {
         this.storage = storage;
         this.db = db;
+        this.plt = plt;
+        this.socialSharing = socialSharing;
+        this.file = file;
+        // visitors: Observable<any[]>;
+        this.visitors = [];
+        this.forCSV = [];
+        this.jsonData = [
+            {
+                prcid: '001',
+                name: "Anil Singh",
+            },
+            {
+                prcid: '002',
+                name: 'Reena Singh',
+            },
+            {
+                prcid: '003',
+                name: 'Aradhya',
+            },
+        ];
     }
     ReglistPage.prototype.ngOnInit = function () {
         var _this = this;
         this.db.getDatabaseState().subscribe(function (rdy) {
             if (rdy) {
                 _this.db.getList().subscribe(function (data) {
-                    _this.visitors = data;
+                    console.log(data);
+                    data.forEach(function (element) {
+                        if (element.useragree == 0) {
+                            _this.visitors.push(element);
+                            var csvData = void 0;
+                            csvData = {
+                                prcid: element.prcid,
+                                name: element.names
+                            };
+                            _this.forCSV.push(csvData);
+                        }
+                    });
+                    // this.visitors = data;
                     console.log(_this.visitors);
+                    console.log(_this.forCSV);
                 });
             }
         });
     };
+    ReglistPage.prototype.downloadFile = function (data, filename) {
+        if (filename === void 0) { filename = "data"; }
+        var csvData = this.ConvertToCSV(data, [
+            "prcid",
+            "name",
+        ]);
+        console.log(csvData);
+        var blob = new Blob(["\ufeff" + csvData], {
+            type: "text/csv;charset=utf-8;"
+        });
+        console.log(blob);
+        var dwldLink = document.createElement("a");
+        var url = URL.createObjectURL(blob);
+        console.log(url);
+        var isSafariBrowser = navigator.userAgent.indexOf("Safari") != -1 &&
+            navigator.userAgent.indexOf("Chrome") == -1;
+        if (isSafariBrowser) {
+            //if Safari open in new window to save file with random filename.
+            dwldLink.setAttribute("target", "_blank");
+        }
+        dwldLink.setAttribute("href", url);
+        dwldLink.setAttribute("download", filename + ".csv");
+        console.log(dwldLink);
+        dwldLink.style.visibility = "hidden";
+        document.body.appendChild(dwldLink);
+        // dwldLink.click();
+        // document.body.removeChild(dwldLink);
+    };
+    ReglistPage.prototype.ConvertToCSV = function (objArray, headerList) {
+        var array = typeof objArray != "object" ? JSON.parse(objArray) : objArray;
+        var str = "";
+        var row = "No,";
+        for (var index in headerList) {
+            row += headerList[index] + ",";
+        }
+        row = row.slice(0, -1);
+        str += row + "\r\n";
+        for (var i = 0; i < array.length; i++) {
+            var line = i + 1 + "";
+            for (var index in headerList) {
+                var head = headerList[index];
+                line += "," + array[i][head];
+            }
+            str += line + "\r\n";
+        }
+        return str;
+    };
+    ReglistPage.prototype.exportSqlite = function () {
+        var _this = this;
+        // this.downloadFile(this.jsonData, 'enfagrowAttendees');
+        var csvData = this.ConvertToCSV(this.forCSV, [
+            "prcid",
+            "name",
+        ]);
+        console.log(csvData);
+        if (this.plt.is('cordova')) {
+            this.file.writeFile(this.file.dataDirectory, 'enfagrowAttendees.csv', csvData, { replace: true }).then(function (res) {
+                _this.socialSharing.share(null, null, res.nativeURL, null).then(function (e) {
+                    // Success
+                }).catch(function (e) {
+                    console.log('Share failed:', e);
+                });
+            }, function (err) {
+                alert('Error: ' + err);
+                console.log('Error: ', err);
+            });
+        }
+        else {
+            // Dummy implementation for Desktop download purpose
+            // var blob = new Blob([csv]);
+            // var a = window.document.createElement('a');
+            // a.href = window.URL.createObjectURL(blob);
+            // a.download = 'newdata.csv';
+            // document.body.appendChild(a);
+            // a.click();
+            // document.body.removeChild(a);
+        }
+    };
     ReglistPage.ctorParameters = function () { return [
         { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_2__["Storage"] },
-        { type: _services_database_service__WEBPACK_IMPORTED_MODULE_3__["DatabaseService"] }
+        { type: _services_database_service__WEBPACK_IMPORTED_MODULE_3__["DatabaseService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"] },
+        { type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_5__["SocialSharing"] },
+        { type: _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_6__["File"] }
     ]; };
     ReglistPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -117,7 +237,11 @@ var ReglistPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./reglist.page.html */ "./node_modules/raw-loader/index.js!./src/app/reglist/reglist.page.html"),
             styles: [__webpack_require__(/*! ./reglist.page.scss */ "./src/app/reglist/reglist.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_storage__WEBPACK_IMPORTED_MODULE_2__["Storage"], _services_database_service__WEBPACK_IMPORTED_MODULE_3__["DatabaseService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_storage__WEBPACK_IMPORTED_MODULE_2__["Storage"],
+            _services_database_service__WEBPACK_IMPORTED_MODULE_3__["DatabaseService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"],
+            _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_5__["SocialSharing"],
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_6__["File"]])
     ], ReglistPage);
     return ReglistPage;
 }());

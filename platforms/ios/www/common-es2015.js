@@ -793,6 +793,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/sqlite/ngx */ "./node_modules/@ionic-native/sqlite/ngx/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/social-sharing/ngx */ "./node_modules/@ionic-native/social-sharing/ngx/index.js");
+
 
 
 
@@ -801,13 +803,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DatabaseService = class DatabaseService {
-    constructor(plt, sqlitePorter, sqlite, http) {
+    constructor(plt, sqlitePorter, sqlite, http, socialSharing) {
         this.plt = plt;
         this.sqlitePorter = sqlitePorter;
         this.sqlite = sqlite;
         this.http = http;
+        this.socialSharing = socialSharing;
         this.dbReady = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"](false);
         this.visitors = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"]([]);
+        this.visitorslist = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"]([]);
         this.plt.ready().then(() => {
             this.sqlite.create({
                 name: 'events.db',
@@ -847,8 +851,8 @@ let DatabaseService = class DatabaseService {
                         id: data.rows.item(i).id,
                         names: data.rows.item(i).names,
                         prcid: data.rows.item(i).prcid,
-                        mobilenumber: data.rows.item(i).mobilenumber,
-                        emailadd: data.rows.item(i).emailadd,
+                        // mobilenumber: data.rows.item(i).mobilenumber,
+                        // emailadd: data.rows.item(i).emailadd,
                         wavelia: data.rows.item(i).wavelia,
                         useragree: data.rows.item(i).useragree,
                         img: data.rows.item(i).img,
@@ -859,14 +863,14 @@ let DatabaseService = class DatabaseService {
         });
     }
     addVisitor(details) {
-        let data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
-        return this.database.executeSql('INSERT INTO visitor (names, prcid, mobilenumber, emailadd, wavelia, useragree, img) VALUES (?,?,?,?,?,?,?)', data).then(data => {
+        let data = [details.names, details.prcid, details.wavelia, details.useragree, details.img];
+        return this.database.executeSql('INSERT INTO visitor (names, prcid, wavelia, useragree, img) VALUES (?,?,?,?,?)', data).then(data => {
             this.loadVisitors();
         });
     }
     updateVisitor(details) {
-        let data = [details.names, details.prcid, details.mobilenumber, details.emailadd, details.wavelia, details.useragree, details.img];
-        return this.database.executeSql(`UPDATE visitor SET names = ?, prcid = ?, mobilenumber = ?, emailadd = ?, wavelia = ?, useragree = ?, img = ? WHERE id = ${details.id}`, data).then(data => {
+        let data = [details.names, details.prcid, details.wavelia, details.useragree, details.img];
+        return this.database.executeSql(`UPDATE visitor SET names = ?, prcid = ?, wavelia = ?, useragree = ?, img = ? WHERE id = ${details.id}`, data).then(data => {
             this.loadVisitors();
         });
     }
@@ -880,13 +884,18 @@ DatabaseService.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["Platform"] },
     { type: _ionic_native_sqlite_porter_ngx__WEBPACK_IMPORTED_MODULE_3__["SQLitePorter"] },
     { type: _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_5__["SQLite"] },
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_7__["SocialSharing"] }
 ];
 DatabaseService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
         providedIn: 'root'
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["Platform"], _ionic_native_sqlite_porter_ngx__WEBPACK_IMPORTED_MODULE_3__["SQLitePorter"], _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_5__["SQLite"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["Platform"],
+        _ionic_native_sqlite_porter_ngx__WEBPACK_IMPORTED_MODULE_3__["SQLitePorter"],
+        _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_5__["SQLite"],
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"],
+        _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_7__["SocialSharing"]])
 ], DatabaseService);
 
 

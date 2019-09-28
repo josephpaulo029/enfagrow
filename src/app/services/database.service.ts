@@ -4,6 +4,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { HttpClient } from '@angular/common/http';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 export interface Dev {
   // id: number,
   // name: string,
@@ -22,7 +23,13 @@ export class DatabaseService {
   visitors = new BehaviorSubject([]);
   visitorslist = new BehaviorSubject([]);
 
-  constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
+  constructor(
+    private plt: Platform,
+    private sqlitePorter: SQLitePorter,
+    private sqlite: SQLite,
+    private http: HttpClient,
+    private socialSharing: SocialSharing,
+  ) {
     this.plt.ready().then(() => {
       this.sqlite.create({
         name: 'events.db',
@@ -93,7 +100,7 @@ export class DatabaseService {
     })
   }
 
-  deleteVisitor(id){
+  deleteVisitor(id) {
     return this.database.executeSql('DELETE FROM visitor WHERE id = ?', [id]).then(_ => {
       this.loadVisitors();
     });
