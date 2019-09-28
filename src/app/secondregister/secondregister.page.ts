@@ -102,7 +102,6 @@ export class SecondregisterPage implements OnInit {
     details.useragree = details.useragree ? '1' : '0'
     details.img = this.signature;
     details.wavelia = "";
-    details.useragree = "1";
     console.log(this.isExisting)
 
     if (this.isExisting == false) {
@@ -172,5 +171,7 @@ export class SecondregisterPage implements OnInit {
 
   clearPad() {
     this.signaturePad.clear();
+    this.signed = false;
+
   }
 }

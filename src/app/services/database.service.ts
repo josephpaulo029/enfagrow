@@ -81,14 +81,14 @@ export class DatabaseService {
 
   addVisitor(details) {
     let data = [details.names, details.prcid, details.wavelia, details.useragree, details.img];
-    return this.database.executeSql('INSERT INTO visitor (names, prcid, mobilenumber, emailadd, wavelia, useragree, img) VALUES (?,?,?,?,?,?,?)', data).then(data => {
+    return this.database.executeSql('INSERT INTO visitor (names, prcid, wavelia, useragree, img) VALUES (?,?,?,?,?)', data).then(data => {
       this.loadVisitors();
     });
   }
 
   updateVisitor(details) {
     let data = [details.names, details.prcid, details.wavelia, details.useragree, details.img];
-    return this.database.executeSql(`UPDATE visitor SET names = ?, prcid = ?, mobilenumber = ?, emailadd = ?, wavelia = ?, useragree = ?, img = ? WHERE id = ${details.id}`, data).then(data => {
+    return this.database.executeSql(`UPDATE visitor SET names = ?, prcid = ?, wavelia = ?, useragree = ?, img = ? WHERE id = ${details.id}`, data).then(data => {
       this.loadVisitors();
     })
   }

@@ -20,7 +20,7 @@ export class ReglistPage implements OnInit {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
         this.db.getList().subscribe(data => {
-
+          console.log(data)
           data.forEach(element => {
             if (element.useragree == 1) {
               this.visitors.push(element)
